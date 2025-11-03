@@ -29,7 +29,7 @@ This app has been tested with the following dependencies
 * In the output there should be: 
   * Gluon         | >>> | 22.1.0.1.r17 | gln     |      | 22.1.0.1.r17-gln
 * Run in command line:
-  * sdk install 22.1.0.1.r17-gln
+  * sdk install java 22.1.0.1.r17-gln
 * In .bashrc add lines:
   * export GRAALVM_HOME=<PATH_TO_SDKMAN>/.sdkman/candidates/java/22.1.0.1.r17-gln
   * export JAVA_HOME=$GRAALVM_HOME
