@@ -2,13 +2,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- Tarkista nama viela -->
     <groupId>org.example</groupId>
     <artifactId>scalatestapplication</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>ScalaTestApplication</name>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Unfortunately gluon does not guarantee that other GraalVM builds work, which means we have to use their latest release https://github.com/gluonhq/graal/releases

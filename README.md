@@ -48,7 +48,7 @@ This app has been tested with the following dependencies
 
 ### Android version
 * Build native image: mvn -Pandroid gluonfx:build gluonfx:package
-* After previous command is successfully completed there should be APK file in target/client/aarch64-android/gvm
+* After previous command is successfully completed there should be APK file in target/gluonfx/aarch64-android/gvm
 * To install APK to your Android mobile phone, you need adb. adb can be obtained by installing https://developer.android.com/tools/sdkmanager
 * Make sure that you have enabled Developer mode in your Android mobile phone and enabled USB debugging after this
 * Connect your Android mobile phone to computer using USB
@@ -67,3 +67,5 @@ This app has been tested with the following dependencies
   * Tested a scala-suffix-maven-plugin plugin for this one, but did not get it to work yet
 * Some libraries, which use reflection need further configuration (https://www.graalvm.org/latest/reference-manual/native-image/metadata/AutomaticMetadataCollection/)
   * Configure Tracing Agent
+* Maven 3.9.11 seems not to be compatible with gluonfx.maven.plugin
+* Fatal error: java.lang.NullPointerException: Cannot invoke "jdk.internal.platform.CgroupInfo.getMountPoint()" because "anyController" is null, linux kernel problem
