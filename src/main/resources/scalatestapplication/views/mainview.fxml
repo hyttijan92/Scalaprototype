@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="mainView" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scalatestapplication.controllers.MainController">
+    <top>
+        <BorderPane fx:id="topPane" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fx:id="imageView" fitHeight="300.00" preserveRatio="true" />
+            </center>
+        </BorderPane>
+    </top>
+      <center>
+          <Label fx:id="quoteLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="150.0" visible="true" BorderPane.alignment="CENTER" />
+      </center>
+      <bottom>
+          <GridPane hgap="10" fx:id="gridPane" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+              <padding>
+                  <Insets top="10" right="10" bottom="10" left="10"/>
+              </padding>
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints fillHeight="true" percentHeight="100" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                  <Button fx:id="getQuoteButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Get quote" wrapText="true" GridPane.columnIndex="0" />
+                  <Button fx:id="saveQuoteButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save quote" wrapText="true" GridPane.columnIndex="1" />
+                  <Button fx:id="showQuotesButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Show saved quotes" wrapText="true" GridPane.columnIndex="2" />
+              </children>
+      
+          </GridPane>
+      </bottom>
+
+   </BorderPane>

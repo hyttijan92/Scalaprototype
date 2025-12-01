@@ -51,6 +51,16 @@
             <version>${javafx.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lihaoyi</groupId>
+            <artifactId>os-lib_3</artifactId>
+            <version>0.11.6</version>
+        </dependency>
+        <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-glisten</artifactId>
             <version>${charm.version}</version>
@@ -95,8 +105,19 @@
             <artifactId>lifecycle</artifactId>
             <version>${attach.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.lihaoyi</groupId>
+            <artifactId>upickle_3</artifactId>
+            <version>4.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.softwaremill.sttp.client4</groupId>
+            <artifactId>core_3</artifactId>
+            <version>4.0.13</version>
+        </dependency>
     </dependencies>
     <build>
+
         <plugins>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
@@ -148,10 +169,36 @@
                     </attachList>
                     <nativeImageArgs>
                         <nativeImageArg>-H:IncludeResources=.*(png|properties)</nativeImageArg>
-                        <nativeImageArg>-O3</nativeImageArg>
+                        <nativeImageArg>-O0</nativeImageArg>
                     </nativeImageArgs>
-
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.github.hyttijan92</groupId>
+                <artifactId>scala-suffix-maven-plugin</artifactId>
+                <version>0.2.2</version>
+                <configuration>
+                    <libraries>
+                        <param>upickle</param>
+                        <param>upickle-core</param>
+                        <param>upack</param>
+                        <param>ujson</param>
+                        <param>upickle-implicits</param>
+                        <param>geny</param>
+                        <param>ws</param>
+                        <param>com.softwaremill.sttp.client4:core</param>
+                        <param>com.softwaremill.sttp.model:core</param>
+                        <param>com.softwaremill.sttp.shared:core</param>
+                        <param>os-lib</param>
+                    </libraries>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>suffix</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

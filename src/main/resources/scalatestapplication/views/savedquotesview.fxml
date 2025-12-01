@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="savedQuotesView" prefHeight="600.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scalatestapplication.controllers.SavedQuotesController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+        <top>
+            <ListView fx:id="savedQuotesListView" prefHeight="200.0" prefWidth="${savedQuotesView.width}" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <Button fx:id="deleteButton" prefHeight="200.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete quote" BorderPane.alignment="CENTER" wrapText="true" />
+         </center>
+         <bottom>
+            <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="${savedQuotesView.width}" text="Back" wrapText="true" BorderPane.alignment="CENTER" />
+         </bottom>
+</BorderPane>

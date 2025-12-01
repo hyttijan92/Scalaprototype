@@ -5,22 +5,10 @@ It fetches random quotes from https://dummyjson.com
 
 ## Dependencies
 This app has been tested with the following dependencies
-* Ubuntu 24.04.2 LTS, some libraries may be needed to install. In my case:
-  * libasound2-dev (for pkgConfig alsa)
-  * libavcodec-dev (for pkgConfig libavcodec)
-  * libavformat-dev (for pkgConfig libavformat)
-  * libavutil-dev (for pkgConfig libavutil)
-  * libfreetype6-dev (for pkgConfig freetype2)
-  * libgl-dev (for pkgConfig gl)
-  * libglib2.0-dev (for pkgConfig gmodule-no-export-2.0)
-  * libglib2.0-dev (for pkgConfig gthread-2.0)
-  * libgtk-3-dev (for pkgConfig gtk+-x11-3.0)
-  * libpango1.0-dev (for pkgConfig pangoft2)
-  * libxtst-dev (for pkgConfig xtst)
 * gcc (Tested with 13.3.0)
 * Apache Maven 3.8.7 (https://maven.apache.org/docs/3.8.7/release-notes.html)
 * Gluon GraalVM 22.1.0.1.r17-gln. It is currently the latest stable release (https://github.com/gluonhq/graal/releases), 
-*  Other GraalVM builds might work also, but only Gluon's own GraalVMs are guaranteed to work with gluon plugins.
+* Other GraalVM builds might work also, but only Gluon's own GraalVMs are guaranteed to work with gluon plugins.
 
 ## Installation and configuration of Gluon GraalVM
 * Install sdkman: https://sdkman.io/install/
@@ -37,17 +25,24 @@ This app has been tested with the following dependencies
 
 
 ## How to use
-* Click the button to get a random quote
+* Application consists of two views: main view and saved quotes view
+* In main view user can fetch a random quote, save it and go to saved quotes view
+* Saved quotes view shows list of saved quotes, allows to delete saved quotes and to return to main view
 
 ## How to compile and run example
 
 ### Testing
 * To test the application and see how it works: mvn gluonfx:run
+
+### Pre native image building
+* Run application, using command: mvn gluonfx:runagent
+* This command collects the necessary metadata, while the application is running
+
 ### Desktop version
-* Build native image: mvn gluonfx:build  gluonfx:nativerun
+* Build native image and run it: mvn gluonfx:build  gluonfx:nativerun
 
 ### Android version
-* Build native image: mvn -Pandroid gluonfx:build gluonfx:package
+* Build native image and package it as APK: mvn -Pandroid gluonfx:build gluonfx:package
 * After previous command is successfully completed there should be APK file in target/gluonfx/aarch64-android/gvm
 * To install APK to your Android mobile phone, you need adb. adb can be obtained by installing https://developer.android.com/tools/sdkmanager
 * Make sure that you have enabled Developer mode in your Android mobile phone and enabled USB debugging after this
@@ -58,14 +53,21 @@ This app has been tested with the following dependencies
 * adb logcat | grep scalaprototype
 
 ### Encountered problems and possible solutions
-* Tried to use GraalVM 24 CE, which is not officially supported by Gluon
-  * Might be possible to get work, but I would guess it would be easier to wait for official Gluon GraalVM CE Gluon 23+25.1
-* Problems using Maven with some dependencies:
-  * Eg. [WARNING] Dependency: /home/janne/.m2/repository/org/playframework/play-functional_3/3.0.5/play-functional_3-3.0.5.jar
-   - exception: Unable to derive module descriptor for /home/janne/.m2/repository/org/playframework/play-functional_3/3.0.5/play-functional_3-3.0.5.jar
-   - cause: play.functional.3: Invalid module name: '3' is not a Java identifier
-  * Tested a scala-suffix-maven-plugin plugin for this one, but did not get it to work yet
-* Some libraries, which use reflection need further configuration (https://www.graalvm.org/latest/reference-manual/native-image/metadata/AutomaticMetadataCollection/)
-  * Configure Tracing Agent
+* GraalVM version problems:
+  * Gluon only supports officially Gluon's own GraalVM forks
+  * Other GraalVMs might work, but I would guess it would be easier to wait for official Gluon GraalVM CE Gluon 23+25.1
 * Maven 3.9.11 seems not to be compatible with gluonfx.maven.plugin
-* Fatal error: java.lang.NullPointerException: Cannot invoke "jdk.internal.platform.CgroupInfo.getMountPoint()" because "anyController" is null, linux kernel problem
+* Problems using Maven with some dependencies:
+  * Maven has problems handling Scala dependencies: 
+    * Eg. [WARNING] There are 1 pathException(s). The related dependencies will be ignored.
+      [WARNING] Dependency: /home/janne/.m2/repository/com/softwaremill/sttp/client4/core_3/4.0.13/core_3-4.0.13.jar
+    - exception: Unable to derive module descriptor for /home/janne/.m2/repository/com/softwaremill/sttp/client4/core_3/4.0.13/core_3-4.0.13.jar
+    - cause: core.3: Invalid module name: '3' is not a Java identifier
+    * To fix these kind of issues use the forked version of the scala-suffix-maven-plugin (https://github.com/hyttijan92/scala-suffix). The forked version is able to handle transitive Scala dependencies.
+* During native image building, the following errors might occur:
+  * Some libraries, which use reflection need further configuration (https://www.graalvm.org/latest/reference-manual/native-image/metadata/AutomaticMetadataCollection/):
+    * To collect necessary metadata for the application and to generate metadata JSONs, before generating native image: run mvn gluonfx:runagent
+  * Linux kernel issues:
+    * Fatal error: java.lang.NullPointerException: Cannot invoke "jdk.internal.platform.CgroupInfo.getMountPoint()" because "anyController" is null
+  * Build might fail with error 137, this indicates that the computer has run out of RAM during image building. To fix this issue close all other applications or if this does not solve the problem add more RAM to your computer.
+    
