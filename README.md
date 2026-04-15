@@ -1,7 +1,6 @@
 # ScalaPrototype example
 
-This is an example app made in Scala 3.3.6. Inspired by https://makingthematrix.wordpress.com/2021/04/07/how-to-build-an-android-app-in-scala-2-13/. 
-It fetches random quotes from https://dummyjson.com
+This is an example app made in Scala 3.3.7. Inspired by https://makingthematrix.wordpress.com/2021/04/07/how-to-build-an-android-app-in-scala-2-13/.
 
 ## Dependencies
 This app has been tested with the following dependencies
@@ -57,7 +56,7 @@ This app has been tested with the following dependencies
   * Gluon only supports officially Gluon's own GraalVM forks
   * Other GraalVMs might work, but I would guess it would be easier to wait for official Gluon GraalVM CE Gluon 23+25.1
 * Maven 3.9.11 seems not to be compatible with gluonfx.maven.plugin
-* Problems using Maven with some dependencies:
+* Problems using Maven with Scala dependencies:
   * Maven has problems handling Scala dependencies: 
     * Eg. [WARNING] There are 1 pathException(s). The related dependencies will be ignored.
       [WARNING] Dependency: /home/janne/.m2/repository/com/softwaremill/sttp/client4/core_3/4.0.13/core_3-4.0.13.jar
